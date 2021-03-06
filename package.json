@@ -1,0 +1,17 @@
+{
+  "name": "virtually-leaving",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "author": "Shaun-Farrell",
+  "workspaces": [
+    "packages/design-system",
+    "packages/web-app",
+    "packages/api"
+  ],
+  "scripts": {
+    "build": "yarn workspaces foreach run build",
+    "test": "node packages/web-app"
+  }
+}
