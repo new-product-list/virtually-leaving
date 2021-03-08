@@ -1,0 +1,72 @@
+service: leaving-api
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-2
+  environment:
+    DYNAMO_DB_REGION: ${self:custom.env.DYNAMO_DB_REGION}
+    DYNAMO_DB_ENDPOINT: ${self:custom.env.DYNAMO_DB_ENDPOINT}
+    DYNAMO_DB_TABLE_NAME: ${self:custom.env.DYNAMO_DB_TABLE_NAME}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.env.DYNAMO_DB_TABLE_NAME}"
+
+custom:
+  env: ${file(./config-${opt:stage, 'dev'}.json)}
+  webpack:
+    webpackConfig: ./webpack.config.js
+    packager: "yarn"
+    includeModules: false
+  dynamodb:
+    # Configuration on how to run DynamoDB in the local environment only
+    # run the yarn command `install-db` first to ensure DynamoDB Local is installed on your machine
+    stages:
+      - local
+    start:
+      port: 8000
+      inMemory: true
+      heapInitial: 200m
+      heapMax: 1g
+      migrate: true
+      seed: false
+      convertEmptyValues: true
+
+functions:
+  api:
+    handler: src/main.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: any
+
+resources:
+  Resources:
+    TodosDynamoDbTable:
+      Type: "AWS::DynamoDB::Table"
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: pk_boardid
+            AttributeType: S
+          - AttributeName: sk_meta_message
+            AttributeType: S
+        KeySchema:
+          - AttributeName: pk_boardid
+            KeyType: HASH
+          - AttributeName: sk_meta_message
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.env.DYNAMO_DB_TABLE_NAME}

@@ -1,0 +1,5 @@
+{
+  "DYNAMO_DB_REGION": "eu-west-2",
+  "DYNAMO_DB_ENDPOINT": "dynamodb.eu-west-2.amazonaws.com",
+  "DYNAMO_DB_TABLE_NAME": "leaving-boards"
+}
