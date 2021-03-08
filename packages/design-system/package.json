@@ -4,6 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "echo \"build 2\""
+    "mono": "echo build DS"
   }
 }

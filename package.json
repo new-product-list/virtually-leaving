@@ -11,7 +11,7 @@
     "packages/api"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach run build",
+    "mono": "yarn workspaces foreach run mono",
     "test": "node packages/web-app"
   }
 }
