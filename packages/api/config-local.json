@@ -1,0 +1,5 @@
+{
+  "DYNAMO_DB_REGION": "localhost",
+  "DYNAMO_DB_ENDPOINT": "http://localhost:8000",
+  "DYNAMO_DB_TABLE_NAME": "leaving-boards"
+}
