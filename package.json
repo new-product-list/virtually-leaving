@@ -12,6 +12,9 @@
   ],
   "scripts": {
     "mono": "yarn workspaces foreach run mono",
-    "test": "node packages/web-app"
+    "sb": "yarn workspace design-system run storybook",
+    "web": "yarn workspace web-app run start",
+    "api-db": "yarn workspace design-system run start-db",
+    "api": "yarn workspace design-system run offline"
   }
 }
