@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "design-system";
 import { Modal } from "./components/ui/modal";
-import useFetch, { FetchData } from "use-http";
+import useFetch from "use-http";
 import { IMessage, IBoard, IRecord } from "./types";
 import "./App.css";
 import "design-system/dist/index.css";
 
 const URL = "http://localhost:3000/local/boards/eOcOYjgYS";
 const META_ID = "board_meta";
-
-const postData = async (post: FetchData, data: object) => {
-  const resp = await post("/messages", data);
-  console.log("posted data: ", resp);
-};
 
 function App() {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -44,14 +39,16 @@ function App() {
             setModal(false);
           }}
           onSubmit={async (messageText) => {
-            await postData(post, { messageText });
+            await post("/messages", { messageText });
             setModal(false);
           }}
         ></Modal>
-        <p className="header">{metaData?.headline}</p>
+        <p className="header">Title: {metaData?.headline}</p>
         <div className="card-container">
-          {messages.map((elem, i) => {
-            return <Card key={i} bodyText={elem.messageText} />;
+          {messages.map((elem) => {
+            return (
+              <Card key={elem.sk_meta_message} bodyText={elem.messageText} />
+            );
           })}
         </div>
         {!loading && (
