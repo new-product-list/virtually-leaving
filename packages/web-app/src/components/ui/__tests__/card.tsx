@@ -1,6 +1,6 @@
 import * as React from "react";
 // import { shallow } from "enzyme";
-import { Card } from "../card";
+import { Card } from "design-system";
 const DUMMY_TEXT = "goodbye bob";
 
 describe("Card", () => {

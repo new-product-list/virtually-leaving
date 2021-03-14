@@ -36,15 +36,3 @@
   margin: 10px;
   flex-wrap: wrap;
 }
-
-.card {
-  margin: 20px;
-  border: 1px solid grey;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: darkslategrey;
-  font-size: 1.2rem;
-  width: 150px;
-  height: 125px;
-  overflow-y: auto;
-}

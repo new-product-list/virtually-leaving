@@ -1,0 +1,15 @@
+.storybook-card {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  color: white;
+  margin: 20px;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: darkslategrey;
+  font-size: 1.2rem;
+  width: 150px;
+  height: 125px;
+  overflow-y: auto;
+}

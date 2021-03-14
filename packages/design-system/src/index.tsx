@@ -1,7 +1,8 @@
 import React, { FC, HTMLAttributes, ReactChild } from 'react';
 export { Button } from './components/Button';
-export { Header } from './components/Header';
-export { Page } from './components/Page';
+export { Card } from './components/Card';
+// export { Header } from './components/Header';
+// export { Page } from './components/Page';
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** custom content, defaults to 'New DS System' */
