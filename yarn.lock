@@ -26632,6 +26632,16 @@ typescript@^3.7.3:
   languageName: node
   linkType: hard
 
+"urs@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "urs@npm:0.0.8"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0
+    react-dom: ^16.13.1 || ^17.0.0
+  checksum: 320490791f6cc6dd72b921b01727f6fd646fdfcae5d4c8a80989cde1d090590dd1af8821eb58d8aece31aead0254608a9f37669cf679740cd003040847837c0e
+  languageName: node
+  linkType: hard
+
 "use-callback-ref@npm:^1.2.1":
   version: 1.2.5
   resolution: "use-callback-ref@npm:1.2.5"
@@ -26653,6 +26663,20 @@ typescript@^3.7.3:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0
   checksum: 2cea8efcb740634ebd1409eafc52232abc28361386305afe2216cd791529c150f20c580c8310d790b59ff5d927b40c3b675775948183d0f9dce2f92100389c93
+  languageName: node
+  linkType: hard
+
+"use-http@npm:^1.0.18":
+  version: 1.0.18
+  resolution: "use-http@npm:1.0.18"
+  dependencies:
+    urs: ^0.0.8
+    use-ssr: ^1.0.24
+    utility-types: ^3.10.0
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0
+    react-dom: ^16.13.1 || ^17.0.0
+  checksum: acfca53952730ed4bac7f069664d7a98214bd2fbeeba8710156bffa4912cbe5c8091dddb2de7c020bc1afcfec2ab0efc6fe4841f5a5a5f1f8b2e2e348db958b4
   languageName: node
   linkType: hard
 
@@ -26691,6 +26715,16 @@ typescript@^3.7.3:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0
   checksum: c95661e612fc177a86740a7b5b14377165365b90d66db0bbe22f163aa3670ad0a4990203d86c933021ea161fcd7c552e2c026e293e47019a4caa7f6ad00363e3
+  languageName: node
+  linkType: hard
+
+"use-ssr@npm:^1.0.24":
+  version: 1.0.24
+  resolution: "use-ssr@npm:1.0.24"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0
+    react-dom: ^16.13.1 || ^17.0.0
+  checksum: dd7c9d1128a6710b2322cd2370cf008eaed9afdea264a34658bcd6f37e5876bad4bb0ef0a264946744919fc864a198b4f1b8a49abce90ac134c75f47fa7decad
   languageName: node
   linkType: hard
 
@@ -26752,6 +26786,13 @@ typescript@^3.7.3:
   version: 0.4.0
   resolution: "utila@npm:0.4.0"
   checksum: 6799b0a5666ac26fb547068e6967e51b534e290174b10ae26e500c216197b0faed9be8a12108bc408ce475ce1002c866aac2d1d4e1453dc72b441d8900f2063a
+  languageName: node
+  linkType: hard
+
+"utility-types@npm:^3.10.0":
+  version: 3.10.0
+  resolution: "utility-types@npm:3.10.0"
+  checksum: 0d2add8ad7057883548a328076dd5eaa8ccb3660df053645fec332253f047fa0882da766dfa676c6a530f6a80023f1f519e1bc3f90088c4fcede303c33de0e4a
   languageName: node
   linkType: hard
 
@@ -27079,6 +27120,7 @@ typescript@^3.7.3:
     ts-pnp: 1.2.0
     typescript: ^4.1.2
     url-loader: 4.1.1
+    use-http: ^1.0.18
     web-vitals: ^1.0.1
     webpack: 4.44.2
     webpack-dev-server: 3.11.1
