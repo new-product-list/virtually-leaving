@@ -7,7 +7,9 @@
     "mono": "echo build Web",
     "build": "node scripts/build.js",
     "testold": "node scripts/test.js",
-    "test": "jest --collectCoverage"
+    "test": "jest --collectCoverage",
+    "domain": "serverless domainInfo",
+    "deploy": "serverless deploy --stage dev"
   },
   "dependencies": {
     "bfj": "^7.0.2",
