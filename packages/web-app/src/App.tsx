@@ -1,6 +1,5 @@
 import React from "react";
-import { Button } from "design-system";
-import { Card } from "./components/ui/card";
+import { Button, Card } from "design-system";
 import { useFetch } from "./components/hooks/useFetch";
 import "./App.css";
 import "design-system/dist/index.css";
