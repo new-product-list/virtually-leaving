@@ -5,10 +5,13 @@ plugins:
   - serverless-deployment-bucket
   - serverless-s3-remover
   - serverless-s3-deploy
+  - serverless-utils
 
 custom:
   s3WebAppBucket: virtually-leaving-web-${opt:stage, 'dev'}
   s3CloudFormBucket: cf-deployment-templates-${opt:stage, 'dev'}
+  s3LocalPath: ./build
+  invalidateCloudFrontCache: true
   remover:
     buckets:
       - ${self:custom.s3WebAppBucket}
@@ -17,12 +20,11 @@ custom:
     targets:
       - bucket: ${self:custom.s3WebAppBucket}
         files:
-          - source: ./build
+          - source: ${self:custom.s3LocalPath}
             globs: "**/*"
 
 provider:
   name: aws
-  runtime: nodejs12.x
   stage: ${opt:stage, 'dev'}
   region: eu-west-2
   deploymentBucket:
@@ -37,7 +39,7 @@ resources:
         AccessControl: PublicRead
         WebsiteConfiguration:
           IndexDocument: index.html
-          ErrorDocument: error.html
+          ErrorDocument: index.html
 
     ## Specifying the policies to make sure all files inside the Bucket are available to CloudFront
     WebAppS3BucketPolicy:
@@ -51,12 +53,12 @@ resources:
               Effect: Allow
               Principal: "*"
               Action:
-                - s3:GetObject
+                - s3:*
               Resource:
                 Fn::Join:
                   ["", ["arn:aws:s3:::", { "Ref": "WebAppS3Bucket" }, "/*"]]
 
-    ## Specifying the CloudFront Distribution to server your Web Application
+    ## Specifying the CloudFront Distribution to server your Web Application (using S3 Website endpoints)
     WebAppCloudFrontDistribution:
       Type: AWS::CloudFront::Distribution
       Properties:
@@ -64,38 +66,44 @@ resources:
           Origins:
             - DomainName:
                 Fn::Join:
-                  ["", [{ "Ref": "WebAppS3Bucket" }, ".s3.amazonaws.com"]]
-              Id: S3-${self:custom.s3WebAppBucket}
+                  [
+                    "",
+                    [
+                      { "Ref": "WebAppS3Bucket" },
+                      ".s3-website.eu-west-2.amazonaws.com",
+                    ],
+                  ]
+              Id: S3-Website-${self:custom.s3WebAppBucket}.s3-website.eu-west-2.amazonaws.com
               CustomOriginConfig:
                 HTTPPort: 80
                 HTTPSPort: 443
-                OriginProtocolPolicy: https-only
+                OriginProtocolPolicy: http-only
           Enabled: "true"
-          DefaultRootObject: index.html
-          CustomErrorResponses:
-            - ErrorCode: 404
-              ResponseCode: 200
-              ResponsePagePath: /index.html
-            - ErrorCode: 403
-              ResponseCode: 200
-              ResponsePagePath: /index.html
-            - ErrorCode: 400
-              ResponseCode: 200
-              ResponsePagePath: /index.html
+          Aliases:
+            - leaving.newproductlist.com
           DefaultCacheBehavior:
             AllowedMethods:
               - GET
               - HEAD
               - OPTIONS
-            TargetOriginId: S3-${self:custom.s3WebAppBucket}
+            TargetOriginId: S3-Website-${self:custom.s3WebAppBucket}.s3-website.eu-west-2.amazonaws.com
             ForwardedValues:
               QueryString: "false"
               Cookies:
                 Forward: none
             ViewerProtocolPolicy: redirect-to-https
           ViewerCertificate:
-            CloudFrontDefaultCertificate: "true"
+            # AcmCertificateArn: "arn:aws:acm:us-east-1:${AWS::AccountId}:certificate/${self:custom.APP_SECRET}"
+            IamCertificateId: 38d620bc-968f-41c0-baa4-070f9be9f50c
+            SslSupportMethod: "sni-only"
+            MinimumProtocolVersion: "TLSv1.2_2019"
+
   Outputs:
     WebAppCloudFrontDistributionOutput:
       Value:
         "Fn::GetAtt": [WebAppCloudFrontDistribution, DomainName]
+    DistributionID:
+      Value:
+        "Ref": "WebAppCloudFrontDistribution"
+    WebAppS3BucketOutput:
+      Value: ${self:custom.s3WebAppBucket}

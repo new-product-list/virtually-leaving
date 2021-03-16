@@ -6829,6 +6829,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"aws-sdk@npm:^2.131.0":
+  version: 2.864.0
+  resolution: "aws-sdk@npm:2.864.0"
+  dependencies:
+    buffer: 4.9.2
+    events: 1.1.1
+    ieee754: 1.1.13
+    jmespath: 0.15.0
+    querystring: 0.2.0
+    sax: 1.2.1
+    url: 0.10.3
+    uuid: 3.3.2
+    xml2js: 0.4.19
+  checksum: 7ec59d3a27cdaa4c24fddad0de7d444e709d93398d447676889eb68c842cd7ad350545eafcfc3bd39483ceb3d625ac32f10c1207790d694244363669377a7537
+  languageName: node
+  linkType: hard
+
 "aws-sign2@npm:~0.7.0":
   version: 0.7.0
   resolution: "aws-sign2@npm:0.7.0"
@@ -7732,7 +7749,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bluebird@npm:^3.3.5, bluebird@npm:^3.4.6, bluebird@npm:^3.5.5, bluebird@npm:^3.7.2":
+"bluebird@npm:^3.3.5, bluebird@npm:^3.4.6, bluebird@npm:^3.5.1, bluebird@npm:^3.5.5, bluebird@npm:^3.7.2":
   version: 3.7.2
   resolution: "bluebird@npm:3.7.2"
   checksum: 4f2288662f3d4eadbb82d4daa4a7d7976a28fa3c7eb4102c9b4033b03e5be4574ba123ac52a7c103cde4cb7b2d2afc1dbe41817ca15a29ff21ecd258d0286047
@@ -23960,6 +23977,23 @@ resolve@1.18.1:
   languageName: node
   linkType: hard
 
+"serverless-ssm-fetch@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "serverless-ssm-fetch@npm:1.0.2"
+  dependencies:
+    aws-sdk: ^2.131.0
+    bluebird: ^3.5.1
+  checksum: 638f23b4730758127c6d596db1e30e80b8c94d68895d0c729e1f42ebe81f883d8b9fd60a0a0f6b7aa9dd0488e9e9e656bff8c9b576a8554907db5e1ef64c5773
+  languageName: node
+  linkType: hard
+
+"serverless-utils@file:./deps/serverless-utils::locator=web-app%40workspace%3Apackages%2Fweb-app":
+  version: 1.0.0
+  resolution: "serverless-utils@file:./deps/serverless-utils#./deps/serverless-utils::hash=d5cdfa&locator=web-app%40workspace%3Apackages%2Fweb-app"
+  checksum: 943cb88395a9c1cc4fc3b9d9bb98727b204d923c1269d5874a13666882d597c22160b08d9cd4605b540de004bc9b1ee0f4649a5460021b5bce186e251e0869bb
+  languageName: node
+  linkType: hard
+
 "serverless-webpack@npm:^5.3.5":
   version: 5.3.5
   resolution: "serverless-webpack@npm:5.3.5"
@@ -27262,6 +27296,8 @@ typescript@^3.7.3:
     serverless-s3-deploy: ^0.10.0
     serverless-s3-remover: ^0.6.0
     serverless-single-page-app-plugin: ^1.0.2
+    serverless-ssm-fetch: ^1.0.2
+    serverless-utils: "file:./deps/serverless-utils"
     style-loader: 1.3.0
     terser-webpack-plugin: 4.2.3
     ts-pnp: 1.2.0
