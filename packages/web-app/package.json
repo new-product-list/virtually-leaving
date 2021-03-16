@@ -8,8 +8,14 @@
     "build": "node scripts/build.js",
     "testold": "node scripts/test.js",
     "test": "jest --collectCoverage",
-    "domain": "serverless domainInfo",
-    "deploy": "serverless deploy --stage dev"
+    "domain": "serverless domainInfos",
+    "sls-updateold": "yarn build && sls syncToS3 && yarn invalidate",
+    "sls-update": "yarn build && yarn deploy",
+    "deploy": "serverless deploy --stage dev -v",
+    "sls-info": "serverless info -v",
+    "describe": "aws cloudformation describe-stacks --stack-name virtually-leaving-web-dev",
+    "distid": "serverless info -v | grep DistributionID | sed 's/DistributionID: //'",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id $(yarn distid) --paths '/*'"
   },
   "dependencies": {
     "bfj": "^7.0.2",
@@ -90,6 +96,8 @@
     "serverless-s3-deploy": "^0.10.0",
     "serverless-s3-remover": "^0.6.0",
     "serverless-single-page-app-plugin": "^1.0.2",
+    "serverless-ssm-fetch": "^1.0.2",
+    "serverless-utils": "file:./deps/serverless-utils",
     "webpack": "4.44.2",
     "webpack-dev-server": "3.11.1",
     "webpack-manifest-plugin": "2.2.0",

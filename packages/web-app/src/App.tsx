@@ -43,7 +43,7 @@ function App() {
             setModal(false);
           }}
         ></Modal>
-        <p className="header">Title: {metaData?.headline}</p>
+        <p className="header">{metaData?.headline}</p>
         <div className="card-container">
           {messages.map((elem) => {
             return (
