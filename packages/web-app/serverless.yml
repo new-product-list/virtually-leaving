@@ -93,8 +93,7 @@ resources:
                 Forward: none
             ViewerProtocolPolicy: redirect-to-https
           ViewerCertificate:
-            # AcmCertificateArn: "arn:aws:acm:us-east-1:${AWS::AccountId}:certificate/${self:custom.APP_SECRET}"
-            IamCertificateId: 38d620bc-968f-41c0-baa4-070f9be9f50c
+            AcmCertificateArn: !Sub "arn:aws:acm:us-east-1:${AWS::AccountId}:certificate/38d620bc-968f-41c0-baa4-070f9be9f50c"
             SslSupportMethod: "sni-only"
             MinimumProtocolVersion: "TLSv1.2_2019"
 
