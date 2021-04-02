@@ -19,6 +19,10 @@ export interface ButtonProps {
    */
   label: string;
   /**
+   * Optional disabled flag
+   */
+  disabled?: boolean;
+  /**
    * Optional click handler
    */
   onClick?: () => void;
@@ -31,6 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   primary = false,
   size = 'medium',
   backgroundColor,
+  disabled,
   label,
   ...props
 }) => {
@@ -44,6 +49,7 @@ export const Button: React.FC<ButtonProps> = ({
         ' '
       )}
       style={{ backgroundColor }}
+      disabled={disabled}
       {...props}
     >
       {label}

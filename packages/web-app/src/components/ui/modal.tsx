@@ -31,7 +31,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <div className="modal">
       <div className="modal-content">
-        <input
+        <textarea
           className="modal-input"
           placeholder="Enter your message"
           value={state}

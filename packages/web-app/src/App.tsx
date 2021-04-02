@@ -51,14 +51,13 @@ function App() {
             );
           })}
         </div>
-        {!loading && (
-          <Button
-            size="large"
-            label="Add message"
-            backgroundColor="white"
-            onClick={() => setModal(true)}
-          />
-        )}
+        <Button
+          size="large"
+          label="Add message"
+          backgroundColor="white"
+          disabled={loading}
+          onClick={() => setModal(true)}
+        />
         <div>{error}</div>
       </div>
     </div>
