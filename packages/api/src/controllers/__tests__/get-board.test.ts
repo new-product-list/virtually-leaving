@@ -10,7 +10,7 @@ const baseMockRes = {
   json: jest.fn(),
 };
 
-describe("getCourse controller", () => {
+describe("getBoard controller", () => {
   it("valid request should call query with correct params", async () => {
     const mockRes: Partial<Response> = {
       ...baseMockRes,

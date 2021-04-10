@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 import { putMessageParams } from "../db/utils";
 import { db } from "../db/client";
-import { generate } from "shortid";
+import { ulid } from "ulid";
 import { SK_MESSAGE_PREFIX } from "../db/constants";
 
 // Controller for put-message
@@ -20,10 +20,10 @@ export const putMessage = async (
       throw new Error("Incorrect paramaters");
     }
 
-    const id = generate();
+    const id = ulid();
     const itemDetails = {
-      pk_boardid: req.params.boardId,
-      sk_meta_message: `${SK_MESSAGE_PREFIX}${id}`,
+      PK: req.params.boardId,
+      SK: `${SK_MESSAGE_PREFIX}${id}`,
       messageText,
       dateCreated: new Date().toISOString(),
     };

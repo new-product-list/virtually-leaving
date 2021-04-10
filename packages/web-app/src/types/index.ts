@@ -1,5 +1,5 @@
 export interface IRecord {
-  sk_meta_message: string;
+  SK: string;
 }
 
 export interface IMessage extends IRecord {
@@ -9,3 +9,5 @@ export interface IMessage extends IRecord {
 export interface IBoard extends IRecord {
   headline: string;
 }
+
+export type ModalInputType = "INPUT" | "TEXTAREA";

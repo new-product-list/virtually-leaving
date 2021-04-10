@@ -12,7 +12,7 @@ const baseMockRes = {
   json: jest.fn(),
 };
 
-describe("getCourse controller", () => {
+describe("getBoard controller", () => {
   it("valid request should call put with correct params", async () => {
     const mockRes: Partial<Response> = {
       ...baseMockRes,
@@ -25,7 +25,7 @@ describe("getCourse controller", () => {
     await putBoard(mockReq as Request, mockRes as Response, jest.fn());
     expect(mockRes.status).toHaveBeenCalledWith(200);
     const itemDetails = {
-      sk_meta_message: SK_BOARD_META,
+      SK: SK_BOARD_META,
       headline: baseMockReq.body.headline,
     };
     // We have dynamic id and date generate so we do a partial match

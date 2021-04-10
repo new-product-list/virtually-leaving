@@ -1,17 +1,18 @@
 import { DYNAMO_DB } from "./constants";
 
 interface IBase {
-  pk_boardid: string;
-  sk_meta_message: string;
-  dateCreated: string;
+  PK: string;
+  SK: string;
 }
 
 interface IBoard extends IBase {
   headline: string;
+  dateCreated: string;
 }
 
 interface IMessage extends IBase {
   messageText: string;
+  dateCreated: string;
 }
 
 export const putBoardParams = (itemDetails: IBoard) => {
@@ -32,10 +33,19 @@ export const putMessageParams = (itemDetails: IMessage) => {
   };
 };
 
+export const deleteMessageParams = (keyDetails: IBase) => {
+  return {
+    TableName: DYNAMO_DB.tableName,
+    Key: {
+      ...keyDetails,
+    },
+  };
+};
+
 export const queryParams = (pk_boardid: string) => {
   return {
     TableName: DYNAMO_DB.tableName,
-    KeyConditionExpression: "pk_boardid = :hkey",
+    KeyConditionExpression: "PK = :hkey",
     ExpressionAttributeValues: {
       ":hkey": pk_boardid,
     },

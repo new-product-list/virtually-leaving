@@ -38,10 +38,9 @@
   flex-wrap: wrap;
 }
 
-/* The Modal (background) */
+/* TODO: Move css below into the Design System */
 .modal {
   color: #282c34;
-  background-color: yellow;
   /* display: none; Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -79,4 +78,26 @@
 .button-panel button {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.info-box {
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.step {
+  display: inline-block;
+  padding-top: 5px;
+  background-color: #61dafb;
+  color: #282c34;
+  height: 35px;
+  width: 40px;
+  font-size: 1.4em;
+  border-radius: 50%;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+button {
+  margin-bottom: 10px;
 }

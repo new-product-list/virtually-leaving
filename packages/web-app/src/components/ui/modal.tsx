@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ModalInputType } from "../../types";
 import { Button } from "design-system";
 
 export interface ModalProps {
@@ -14,13 +15,56 @@ export interface ModalProps {
    * Function called on cancel click
    */
   onCancel?: () => void;
+  /**
+   * Optional placeholder text
+   */
+  placeholder?: string;
+  /**
+   * Function called on cancel click
+   */
+  fieldType?: ModalInputType;
 }
+
+interface IInputProps {
+  type: ModalInputType | undefined;
+  state: string;
+  setState: any;
+  placeholder: string | undefined;
+}
+
+const CustomInput = (props: IInputProps) => {
+  const { type, state, setState, placeholder } = props;
+  if (type === "INPUT") {
+    return (
+      <input
+        className="modal-input"
+        placeholder={placeholder || "Enter your message"}
+        value={state}
+        onChange={(evt) => {
+          setState(evt.target.value);
+        }}
+      />
+    );
+  }
+  return (
+    <textarea
+      className="modal-input"
+      placeholder={placeholder || "Enter your message"}
+      value={state}
+      onChange={(evt) => {
+        setState(evt.target.value);
+      }}
+    />
+  );
+};
 
 /**
  * Primary UI component for user interaction
  */
 export const Modal: React.FC<ModalProps> = ({
   visible,
+  placeholder,
+  fieldType,
   onCancel,
   onSubmit,
 }) => {
@@ -31,13 +75,11 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <div className="modal">
       <div className="modal-content">
-        <textarea
-          className="modal-input"
-          placeholder="Enter your message"
-          value={state}
-          onChange={(evt) => {
-            setState(evt.target.value);
-          }}
+        <CustomInput
+          type={fieldType}
+          state={state}
+          setState={setState}
+          placeholder={placeholder}
         />
         <div className="button-panel">
           <Button

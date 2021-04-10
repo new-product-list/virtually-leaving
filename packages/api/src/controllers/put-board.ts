@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 import { putBoardParams } from "../db/utils";
 import { db } from "../db/client";
-import { generate } from "shortid";
+import { ulid } from "ulid";
 import { SK_BOARD_META } from "../db/constants";
 
 // Controller for put-board
@@ -17,10 +17,10 @@ export const putBoard = async (
       throw new Error("Incorrect paramaters");
     }
 
-    const pk_boardid = generate();
+    const PK = ulid();
     const itemDetails = {
-      pk_boardid,
-      sk_meta_message: SK_BOARD_META,
+      PK,
+      SK: SK_BOARD_META,
       headline,
       dateCreated: new Date().toISOString(),
     };
@@ -28,7 +28,7 @@ export const putBoard = async (
     await db.put(putBoardParams(itemDetails)).promise();
 
     res.status(200);
-    res.json({ id: pk_boardid });
+    res.json({ id: PK });
   } catch (error) {
     console.log("err: ", error);
     res.status(error.status ?? 400);
